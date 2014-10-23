@@ -5,3 +5,5 @@
 /rspec.failures
 /vendor
 /.bundle
+.idea
+*.iml

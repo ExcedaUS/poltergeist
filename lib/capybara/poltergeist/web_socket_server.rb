@@ -19,9 +19,10 @@ module Capybara::Poltergeist
     HOST = '127.0.0.1'
 
     attr_reader :port, :driver, :socket, :server
-    attr_accessor :timeout
+    attr_accessor :timeout, :host
 
-    def initialize(port = nil, timeout = nil)
+    def initialize(host = HOST, port = nil, timeout = nil)
+      @host = host
       @timeout = timeout
       @server  = start_server(port)
     end
@@ -30,7 +31,7 @@ module Capybara::Poltergeist
       time = Time.now
 
       begin
-        TCPServer.open(HOST, port || 0).tap do |server|
+        TCPServer.open(host, port || 0).tap do |server|
           @port = server.addr[1]
         end
       rescue Errno::EADDRINUSE

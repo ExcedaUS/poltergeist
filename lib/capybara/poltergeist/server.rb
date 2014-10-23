@@ -1,8 +1,9 @@
 module Capybara::Poltergeist
   class Server
-    attr_reader :socket, :fixed_port, :timeout
+    attr_reader :socket, :fixed_port, :timeout, :host
 
-    def initialize(fixed_port = nil, timeout = nil)
+    def initialize(host = nil, fixed_port = nil, timeout = nil)
+      @host = host
       @fixed_port = fixed_port
       @timeout    = timeout
       start
@@ -17,7 +18,7 @@ module Capybara::Poltergeist
     end
 
     def start
-      @socket = WebSocketServer.new(fixed_port, timeout)
+      @socket = WebSocketServer.new(host, fixed_port, timeout)
     end
 
     def stop
