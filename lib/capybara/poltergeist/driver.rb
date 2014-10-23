@@ -49,7 +49,7 @@ module Capybara::Poltergeist
 
     def phantomjs_options
       list = options[:phantomjs_options] || []
-      list += ["--remote-debugger-port=#{inspector.port}", "--remote-debugger-autorun=yes"] if inspector
+      list += ["--remote-debugger-port=#{inspector.port}", "--remote-debugger-autorun=yes --webdriver=#{options[:host]}:18910"] if inspector
       list
     end
 
